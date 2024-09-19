@@ -31,6 +31,20 @@ data_summary <- function(data, varname, groupnames){
 path <- "~/Scripts/Commercial products"
 setwd(path)
 
+
+
+#=== Cohen size for 6 horses ===
+pwr.t.test(n=6, d = NULL, sig.level = 0.05, power = 0.8, type = "paired")
+# Paired t test power calculation 
+# 
+# n = 6
+# d = 1.434538
+# sig.level = 0.05
+# power = 0.8
+# alternative = two.sided
+
+
+#=== Data ===
 dat=read.csv(file='EUPAOr.csv', header=T,sep=';', dec=',',fileEncoding="latin1")
 head(dat)
 #    Horse n Age Box   Group Weight Fecal_matter  FEC Volume L3_obs Nb_egg_FM L3_exp Dev  Day   facet
@@ -542,32 +556,6 @@ bs_hema$hemato[bs_hema$hemato == "Eos"] <- "Eosinophil"
 bs_hema$hemato[bs_hema$hemato == "Baso"] <- "Basophil"
 bs_hema$hemato<- factor(bs_hema$hemato, levels = c('Red blood cell','Lymphocyte',"Monocyte","Neutrophil","Eosinophil","Basophil"))
 bs_hema$Group<- factor(bs_hema$Group, levels = c('Control','Mugwort',"Echinacea","Curcumin"))
-
-# sum_hemato=ggplot(bs_hema, aes(x=day, y=value, fill=Group))+
-#   geom_boxplot(alpha=0.4)+
-#   geom_point(aes(x = day,y= value, group = Group), size = 1.5, shape = 1,position = position_jitterdodge(0))+
-#   facet_wrap(~Group+hemato, scales="free",ncol = 6)+
-#   theme(legend.position = 'bottom',text = element_text(size = 16),
-#         axis.text.x = element_text(size = 17,face = "bold", color="#525252"),
-#         legend.title = element_blank())+
-#   theme(strip.background = element_blank(), 
-#         strip.text.x = element_text(size = 30, family = "Lato", face = "bold", color="#525252"))+
-#   labs(title=, y= "Count",  x='day')+
-#   theme(axis.line = element_line(size = 1, linetype = "solid"),
-#         legend.title = element_blank(),legend.position="bottom",
-#         legend.text = element_text(size=33, family = "Lato"),
-#         axis.title.x = element_text(size=35, family = "Lato", margin = margin(t = 0.4, unit="cm")), 
-#         axis.title.y = element_text(size=35, family = "Lato", margin = margin(r = 0.4, unit="cm")),
-#         axis.text.x = element_text(size=25, face = "bold", family = "Lato"),
-#         axis.text.y = element_text(size=25, face='bold', family = "Lato"))+
-#   theme(panel.border = element_blank(),
-#         panel.grid.major = element_blank(),
-#         panel.grid.minor = element_blank(),
-#         axis.line = element_line(colour = "black"))+
-#   scale_fill_manual(values=c('#737373','#dd3497',"#41ab5d","#feb24c"))
-# sum_hemato
-# dev.print(device = png, file = "sum_hemato_plot.png",  width = 28, height = 18, units = "in", res = 300)
-
 
 ##### Plot and Statistic ####
 #Control
@@ -1569,3 +1557,4 @@ hemato_plot=ggarrange(plot_hemato_M, plot_hemato_E, plot_hemato_C,
           ncol = 2, nrow = 2)
 hemato_plot
 dev.print(device = png, file = "hemato_plot.png",  width = 28, height = 18, units = "in", res = 300)
+#=================================================================
