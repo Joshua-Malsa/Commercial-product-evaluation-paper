@@ -28,9 +28,8 @@ data_summary <- function(data, varname, groupnames){
   data_sum <- rename(data_sum, c("mean" = varname))
   return(data_sum)}
 
-path <- "~/Scripts/Commercial products"
+path <- ""
 setwd(path)
-
 
 
 #=== Cohen size for 6 horses ===
@@ -726,7 +725,6 @@ summary(mod_C_baso)
 # dayd10      0.2142857 0.09665611 18  2.216991  0.0397
 # dayd15      0.0285714 0.09665611 18  0.295599  0.7709
 # dayd30      0.0285714 0.09665611 18  0.295599  0.7709
-
 
 #Mugwort
 bs_CA=bs[bs$day!='d30'& bs$day!='d15'& bs$Group!='Echinacea'& bs$Group!='Curcumin',]
